@@ -1,0 +1,31 @@
+{
+    "name"        : "vadhack-remote-editor",
+    "version"     : "1.0.0",
+    "description" : "Remote editor",
+    "main"        : "index.js",
+    "keywords"    : [
+        "robot",
+        "vadhack",
+        "javascript",
+        "bot",
+        "nodebot",
+        "vadbot",
+        "editor",
+        "remote",
+        "remote-editor",
+        "raspberry",
+        "raspberrypi",
+        "raspberry pi",
+        "banana pi",
+        "banana pro"
+    ],
+    "dependencies"      : {
+        "express"       : "4.13.4",
+        "body-parser"   : "latest",
+        "socket.io"     : "1.2.1",
+        "fs-extra"      : "latest",
+        "serialport"    : "latest"
+    },
+    "author"    : "Valentín Arámbulo Díaz <valentin.arambulo@gmail.com> (http://www.vadhack.com)",
+    "license"   : "custom license <LICENSE.pdf>"
+}
