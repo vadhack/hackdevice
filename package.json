@@ -23,8 +23,7 @@
         "express"       : "4.13.4",
         "body-parser"   : "latest",
         "socket.io"     : "1.2.1",
-        "fs-extra"      : "latest",
-        "serialport"    : "latest"
+        "fs-extra"      : "latest"
     },
     "author"    : "Valentín Arámbulo Díaz <valentin.arambulo@gmail.com> (http://www.vadhack.com)",
     "license"   : "custom license <LICENSE.pdf>"
