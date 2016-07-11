@@ -210,7 +210,7 @@ function makeSpawn(params){
         var options = {
             cachePassword   : true,
             prompt          : 'Password? ',
-            spawnOptions    : { /* other options for spawn */ }
+            spawnOptions    : { detached: true }
         };
         return sudo([ params.cmd,  process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename], options);
     }
