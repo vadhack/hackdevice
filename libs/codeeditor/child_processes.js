@@ -11,11 +11,11 @@ Processes.prototype.add = function(name, child){
     }
 };
 
-Processes.prototype.kill = function(name, pro){
+Processes.prototype.kill = function(name){
     var child = this.childs[name];
     if(child){
         //child.kill();
-        pro.kill(-child.pid);
+        process.kill(-child.pid);
         delete this.childs[name];
     }
 };

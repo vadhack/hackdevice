@@ -130,13 +130,13 @@ module.exports = function(app, controller, db, io){
                     data    : "closed. code: " + code,
                     filename: child.name
                 });
-                cprocesses.kill(child.name, process);
+                cprocesses.kill(child.name);
             });
         });
         
         socket.on("code:cmd:child:kill", function(params, callback){
             //{name}
-            cprocesses.kill(params.name, process);
+            cprocesses.kill(params.name);
             callback({ok : true, name : params.name});
         });
         
@@ -193,7 +193,7 @@ module.exports = function(app, controller, db, io){
                     data    : "closed. code: " + code,
                     filename: child.name
                 });
-                cprocesses.kill(child.name, process);
+                cprocesses.kill(child.name);
             });
         });
         
@@ -228,3 +228,7 @@ function writeFile (dir, content, cb) {
         }
     });
 };
+
+process.on('exit', function () {
+    cprocesses.killall();
+});
