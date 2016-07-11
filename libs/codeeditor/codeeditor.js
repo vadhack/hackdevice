@@ -6,6 +6,7 @@ var filesystem      = require("../../libs/filesystem.js"),
     __exec 		    = child_process.exec,
     __spawn         = child_process.spawn,
     //child,
+    DIR_PUBLIC      = "workspace",
     childs, cprocesses,
     Procesess       = require("./child_processes.js"),
     fse             = require("fs-extra");
@@ -92,7 +93,7 @@ module.exports = function(app, controller, db, io){
             
             if(!cprocesses.exist(params.filename)){
                 child = __exec(params.cmd,{
-            	    cwd     : process.cwd() + "/public/",
+            	    cwd     : process.cwd() + "/"+DIR_PUBLIC+"/",
             	    detached: false
             	});
                 child = cprocesses.child(params.filename, child);
@@ -149,7 +150,7 @@ module.exports = function(app, controller, db, io){
             var child;
             
             if(!cprocesses.exist(params.filename)){
-                child = __spawn(params.cmd, [process.cwd() + "/public/" + params.filename]);
+                child = __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
                 child = cprocesses.child(params.filename, child);
             }else {
                 return callback({ok : false, msg : "process exist"});

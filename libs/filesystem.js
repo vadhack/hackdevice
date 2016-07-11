@@ -13,7 +13,7 @@ module.exports = function(opt, cb){
     opt.timeout 	= opt.timeout || 8000;
     
     var nodes = [];
-    listdir(opt.path, nodes);//"public/"+
+    listdir(opt.path, nodes);//"workspace/"+
     setTimeout(function () {
         cb(nodes);
     }, opt.timeout);
