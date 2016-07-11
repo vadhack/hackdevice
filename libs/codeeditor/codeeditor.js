@@ -130,13 +130,13 @@ module.exports = function(app, controller, db, io){
                     data    : "closed. code: " + code,
                     filename: child.name
                 });
-                cprocesses.kill(child.name);
+                cprocesses.kill(child.name, process);
             });
         });
         
         socket.on("code:cmd:child:kill", function(params, callback){
             //{name}
-            cprocesses.kill(params.name);
+            cprocesses.kill(params.name, process);
             callback({ok : true, name : params.name});
         });
         
@@ -193,7 +193,7 @@ module.exports = function(app, controller, db, io){
                     data    : "closed. code: " + code,
                     filename: child.name
                 });
-                cprocesses.kill(child.name);
+                cprocesses.kill(child.name, process);
             });
         });
         
