@@ -15,6 +15,7 @@ Processes.prototype.kill = function(name){
     var child = this.childs[name];
     if(child){
         child.kill();
+        process.kill(-child.pid);
         delete this.childs[name];
     }
 };
