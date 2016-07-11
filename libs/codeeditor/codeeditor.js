@@ -207,12 +207,14 @@ function makeSpawn(params){
     if(isWin){
         return __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
     }else{
+        return __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
+        /*
         var options = {
             cachePassword   : true,
             prompt          : 'Password? ',
             spawnOptions    : { detached: true }
         };
-        return sudo([ params.cmd,  process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename], options);
+        return sudo([ params.cmd,  process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename], options);*/
     }
 };
 
