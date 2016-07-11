@@ -1,7 +1,7 @@
 
 var serialPort 	= require('serialport'),
     port,
-	SerialPort 	= serialPort.SerialPort;
+	SerialPort 	= serialPort;//.SerialPort;
 
 
 module.exports = function(app, controller, db, io){
