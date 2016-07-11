@@ -7,6 +7,7 @@ var filesystem      = require("../../libs/filesystem.js"),
     __spawn         = child_process.spawn,
     //child,
     DIR_PUBLIC      = "workspace",
+    isWin           = /^win/.test(process.platform),
     childs, cprocesses,
     Procesess       = require("./child_processes.js"),
     fse             = require("fs-extra");
@@ -147,10 +148,11 @@ module.exports = function(app, controller, db, io){
         socket.on("code:cmd:run", function(params, callback){
             //{cmd, filename}
             
-            var child;
+            var child, 
+                sudo = (!isWin)? "sudo " : "";
             
             if(!cprocesses.exist(params.filename)){
-                child = __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
+                child = __spawn(sudo+params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
                 child = cprocesses.child(params.filename, child);
             }else {
                 return callback({ok : false, msg : "process exist"});
