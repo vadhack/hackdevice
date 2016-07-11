@@ -1,7 +1,7 @@
 
 var serialPort 	= require('serialport'),
     port,
-	SerialPort 	= serialPort;//.SerialPort;
+	SerialPort 	= serialPort.SerialPort || serialPort;
 
 
 module.exports = function(app, controller, db, io){
@@ -18,7 +18,7 @@ module.exports = function(app, controller, db, io){
         //terminal:connect
         socket.on('terminal:connect', function (params, callback) {
             port = new SerialPort( params.port || '/dev/ttyUSB0', {
-        	  	baudRate    : params.baud || 57600
+        	  	baudRate    : parseInt(params.baud) || 57600
         	});
         	port.on('open', function () {
         		callback({ok : true});
