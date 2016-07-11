@@ -8,6 +8,7 @@ var filesystem      = require("../../libs/filesystem.js"),
     //child,
     DIR_PUBLIC      = "workspace",
     isWin           = /^win/.test(process.platform),
+    sudo            = require("sudo"),
     childs, cprocesses,
     Procesess       = require("./child_processes.js"),
     fse             = require("fs-extra");
@@ -152,7 +153,7 @@ module.exports = function(app, controller, db, io){
                 sudo = (!isWin)? "sudo " : "";
             
             if(!cprocesses.exist(params.filename)){
-                child = __spawn(sudo+params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
+                child = makeSpawn(params);
                 child = cprocesses.child(params.filename, child);
             }else {
                 return callback({ok : false, msg : "process exist"});
@@ -200,6 +201,19 @@ module.exports = function(app, controller, db, io){
     });
 
 
+};
+
+function makeSpawn(params){
+    if(isWin){
+        return __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
+    }else{
+        var options = {
+            cachePassword   : true,
+            prompt          : 'Password? ',
+            spawnOptions    : { /* other options for spawn */ }
+        };
+        return sudo([ params.cmd,  process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename], options);
+    }
 };
 
 function writeFile (dir, content, cb) {
