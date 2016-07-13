@@ -90,12 +90,15 @@ module.exports = function(app, controller, db, io){
         
         socket.on("code:cmd", function(params, callback){
             //{cmd, filename}
+        	params.cwd = params.cwd || "";
         	
-        	var child;
+        	var child, 
+        	    working_directory = process.cwd() + "/"+DIR_PUBLIC+"/" + params.cwd;
+        	
             
             if(!cprocesses.exist(params.filename)){
                 child = __exec(params.cmd,{
-            	    cwd     : process.cwd() + "/"+DIR_PUBLIC+"/",
+            	    cwd     : working_directory,
             	    detached: false
             	});
                 child = cprocesses.child(params.filename, child);
