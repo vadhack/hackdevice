@@ -5,6 +5,7 @@ var filesystem      = require("../../libs/filesystem.js"),
     child_process   = require('child_process'),
     __exec 		    = child_process.exec,
     __spawn         = child_process.spawn,
+    __fork          = child_process.fork,
     //child,
     DIR_PUBLIC      = "workspace",
     isWin           = /^win/.test(process.platform),
@@ -152,8 +153,7 @@ module.exports = function(app, controller, db, io){
         socket.on("code:cmd:run", function(params, callback){
             //{cmd, filename}
             
-            var child, 
-                sudo = (!isWin)? "sudo " : "";
+            var child;
             
             if(!cprocesses.exist(params.filename)){
                 child = makeSpawn(params);
@@ -208,9 +208,9 @@ module.exports = function(app, controller, db, io){
 
 function makeSpawn(params){
     if(isWin){
-        return __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
+        return __fork(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
     }else{
-        return __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
+        return __fork(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
         /*
         var options = {
             cachePassword   : true,
