@@ -208,9 +208,9 @@ module.exports = function(app, controller, db, io){
 
 function makeSpawn(params){
     if(isWin){
-        return __fork(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
+        return __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
     }else{
-        return __fork(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
+        return __spawn(params.cmd, [process.cwd() + "/"+DIR_PUBLIC+"/" + params.filename]);
         /*
         var options = {
             cachePassword   : true,
