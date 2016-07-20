@@ -10,8 +10,8 @@ var Email = module.exports = function(opt){
     opt = opt || {};
     this.subject = opt.subject || 'www.vadhack.com';
     this.transporter = nodemailer.createTransport({
-      	service: 'Gmail',
-      	auth: {
+      	service : 'Gmail',
+      	auth : {
         	user: opt.user, 
         	pass: opt.pass 
       	}

@@ -9,7 +9,6 @@ var filesystem      = require("../../libs/filesystem.js"),
     //child,
     DIR_PUBLIC      = "workspace",
     isWin           = /^win/.test(process.platform),
-    sudo            = require("sudo"),
     childs, cprocesses,
     Procesess       = require("./child_processes.js"),
     fse             = require("fs-extra");
