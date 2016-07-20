@@ -1,0 +1,11 @@
+{
+    "nombre" : "tutorial-alarm",
+    "version": "1.0.0",
+    "dependencies": {
+        "camerapi": "^0.1.0",
+        "fs-extra": "^0.26.7",
+        "nodemailer": "^2.3.0",
+        "onoff": "^1.0.4",
+        "raspicam": "^0.2.13"
+    }
+}
