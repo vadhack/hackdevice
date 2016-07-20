@@ -12,8 +12,8 @@ var Email = module.exports = function(opt){
     this.transporter = nodemailer.createTransport({
       	service: 'Gmail',
       	auth: {
-        	user: opt.user || 'app.vadhack@gmail.com',
-        	pass: opt.pass || 'vadhack.com'
+        	user: opt.user, 
+        	pass: opt.pass 
       	}
     });
 };
