@@ -14,60 +14,18 @@ module.exports = function(opt, cb){
     
     var nodes = [];
     listdir(opt.path, nodes);//"workspace/"+
-    setTimeout(function () {
-        cb(nodes);
-    }, opt.timeout);
-
+    cb(nodes);
 };
-
- 
-function processReq(_p, res) {
-
-    if(_p == 1 || _p == "#") _p = "public";
-
-    var resp = [];
-    fs.readdir(_p, function(err, list) {
-        if(err) return res.error(err);
-        for (var i = list.length - 1; i >= 0; i--) {
-            resp.push(processNode(_p, list[i]));
-        }
-        res.ok(resp);
-    });
-};
- 
-function processNode(_p, f) {
-
-    var route = path.join(_p, f);
-    var s = fs.statSync(route);
-    return {
-        "id": route,
-        "text": f,
-        "icon" : s.isDirectory() ? 'jstree-folder' : 'jstree-file',
-        "state": {
-            "opened"    : true,
-            "disabled"  : false,
-            "selected"  : false
-        },
-        "li_attr": {
-            "base"      : route,
-            "isLeaf"    : !s.isDirectory()
-        },
-        "children"      : s.isDirectory()
-    };
-};
-
-
-
-///
-
 
 function listdir (root, nodes) {
-    fs.readdir(root, function(err, list) {
-        if(err) return console.log(err);
+    try{
+        var list = fs.readdirSync(root);
         list.forEach(function (dir) {
             setupnode(nodes, root, dir);
         });
-    });
+    }catch(err){
+        return console.error(err);
+    }
 };
 
 function setupnode (nodes, root, dir) {
