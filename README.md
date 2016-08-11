@@ -1,7 +1,7 @@
 
 
 
-###Remote editor
+###HACKDEVICE
 
-Back-end, this software belong to desktop Remote editor application
+Back-end, this software belong to HACKDEVICE Remote editor application
 
