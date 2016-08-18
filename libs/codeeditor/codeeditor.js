@@ -109,14 +109,14 @@ module.exports = function(app, controller, db, io){
         	child.stdout.on('data', function(data) {
                 socket.emit("code:cmd:child:stdout", {
                     ok      : true,
-                    data    : data,
+                    data    : data.toString(),
                     filename: child.name
                 });
             });
             child.stderr.on('data', function(data) {
                 socket.emit("code:cmd:child:stderr", {
                     ok      : false,
-                    data    : data,
+                    data    : data.toString(),
                     filename: child.name
                 });
             });
