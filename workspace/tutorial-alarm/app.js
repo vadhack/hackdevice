@@ -2,7 +2,10 @@
 var Pin     = require("../libs/gpio.js"),
     Email   = require("../libs/email.js");
 
-var email   = new Email(),
+var email   = new Email({
+        user : undefined,// e-mail
+        pass : undefined//  password
+    }),
     led     = new Pin(4, "out"),
     sensor  = new Pin(27, "in", 'both'),
     sirena  = new Pin(17, "out");
